@@ -1,6 +1,7 @@
 import org.junit.Test;
 
 import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 
 public class GameFrameTest {
@@ -15,7 +16,7 @@ public class GameFrameTest {
         bfg.gameFrames.get(0).addRoll(5);
         bfg.gameFrames.get(0).addRoll(4);
         currentGameFrame = bfg.gameFrames.get(0);
-        assertEquals(currentGameFrame.toString(), "ID: 0 and rolls: 5 4 ");
+        assertEquals(currentGameFrame.toString(), "id:0, Rolls: 5 4 ");
         //assertEquals(currentGameFrame.getScore(), 9);
 
 

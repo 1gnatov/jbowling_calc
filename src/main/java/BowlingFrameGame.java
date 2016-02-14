@@ -1,14 +1,15 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
+
+
 
 public class BowlingFrameGame {
     
     private final String playerName;
-    private int currentFrameId = 0;
+    public int currentFrameId = 0;
     private int numberOfRolls = 0;
     private int pinLeft = 10;
-    private int haveRollsInLastFrame = 2;
+    public int haveRollsInLastFrame = 2;
     private boolean freeRollLastFrame = false;
     final static int LAST_FRAME_INDEX = 9;
 
@@ -32,7 +33,7 @@ public class BowlingFrameGame {
 
     public BowlingFrameGame(String playerName) {
         this.playerName = playerName;
-        this.gameFrames = new ArrayList<GameFrame>();
+        this.gameFrames = new ArrayList<GameFrame>(10);
         this.scoreTable = new ArrayList<Integer>(10);
         this.finalScoreTable = new ArrayList<Integer>(10);
         this.bonusCounterLists = new ArrayList<BonusCounterFrame>(3);
@@ -49,7 +50,7 @@ public class BowlingFrameGame {
 
         if (currentFrameId == LAST_FRAME_INDEX) {
             //System.out.println(currentFrameId +" " + LAST_FRAME_INDEX);
-            rollLastframe(roll);
+            rollLastFrame(roll);
         } else {
 
             if (checkHavePins(roll)) {
@@ -64,7 +65,7 @@ public class BowlingFrameGame {
                 }
 
             } else {
-                //System.out.println("Give right number of pins.");
+                System.out.println("Give right number of pins.");
             }
         }
     }
@@ -84,21 +85,21 @@ public class BowlingFrameGame {
             clearBonusCounterList();
 
         }
-        if (currentFrameId > 0 && scoreTable.get(currentFrameId) == 0) {
-            temp = scoreTable.get(currentFrameId-1);
-            temp += scoreTable.get(currentFrameId);
-        } else {
-            temp = scoreTable.get(currentFrameId);
-        }
+//        if (currentFrameId > 0 && scoreTable.get(currentFrameId) == 0) {
+//            temp = scoreTable.get(currentFrameId-1);
+//            temp += scoreTable.get(currentFrameId);
+//        } else {
+        temp = scoreTable.get(currentFrameId);
+//        }
 
         scoreTable.set(currentFrameId, temp+roll);
 
-        if (gameFrames.get(currentFrameId).isStrike()) {
+        if (gameFrames.get(currentFrameId).isStrike() && currentFrameId != LAST_FRAME_INDEX) {
             BonusCounterFrame strikeBonusCounter = new BonusCounterFrame(currentFrameId, 2);
             bonusCounterLists.add(strikeBonusCounter);
         }
 
-        if (gameFrames.get(currentFrameId).isSpare()) {
+        if (gameFrames.get(currentFrameId).isSpare() && currentFrameId != LAST_FRAME_INDEX) {
             BonusCounterFrame spearBonusCounter = new BonusCounterFrame(currentFrameId, 1);
             bonusCounterLists.add(spearBonusCounter);
         }
@@ -115,7 +116,7 @@ public class BowlingFrameGame {
             if (i == 0){
                 finalScoreTable.set(0, scoreTable.get(0));
             } else {
-                int temp = scoreTable.get(i-1);
+                int temp = finalScoreTable.get(i-1);
                 finalScoreTable.set(i,temp+scoreTable.get(i));
             }
 
@@ -134,7 +135,8 @@ public class BowlingFrameGame {
 
     }
 
-    private void rollLastframe(int roll) {
+    private void rollLastFrame(int roll) {
+        //System.out.println("LAST FRAME");
         if (haveRollsInLastFrame > 0) {
             if (correctRoll(roll)) {
                 this.gameFrames.get(LAST_FRAME_INDEX).addRoll(roll);
@@ -155,7 +157,7 @@ public class BowlingFrameGame {
     }
 
     private boolean correctRoll(int roll) {
-        return (roll >= 0 && roll < 10);
+        return (roll >= 0 && roll <= 10);
     }
 
     private boolean checkHavePins(int roll) {
@@ -218,9 +220,6 @@ class GameFrame {
     private ArrayList<Integer> rolls = new ArrayList<Integer>();
     private int score;
     private int totalScoreToThis;
-    public int getId() {
-        return this.id;
-    }
 
     public GameFrame(int id) {
         this.id = id;
@@ -235,6 +234,10 @@ class GameFrame {
         return ("id:" + id + ", Rolls: " + strRolls);
     }
 
+//    public void setRoll(int id, int roll) {
+//        rolls.set(id, roll);
+//    }
+
     public ArrayList<Integer> getRolls() {
         return rolls;
     }
@@ -242,11 +245,6 @@ class GameFrame {
     public void addRoll(int roll) {
         rolls.add(roll);
     }
-
-    public void setRoll(int id, int roll) {
-        rolls.set(id, roll);
-    }
-
 
     public boolean isSpare() {
         if (getRolls().size() >= 2) {
