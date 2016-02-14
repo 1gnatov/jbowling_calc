@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -12,6 +13,7 @@ public class BowlingFrameGame {
     final static int LAST_FRAME_INDEX = 9;
 
     public ArrayList<Integer> scoreTable;
+    public ArrayList<Integer> finalScoreTable;
     public ArrayList<GameFrame> gameFrames;
     public ArrayList<BonusCounterFrame> bonusCounterLists;
     public String getPlayerName() {
@@ -32,10 +34,12 @@ public class BowlingFrameGame {
         this.playerName = playerName;
         this.gameFrames = new ArrayList<GameFrame>();
         this.scoreTable = new ArrayList<Integer>(10);
+        this.finalScoreTable = new ArrayList<Integer>(10);
         this.bonusCounterLists = new ArrayList<BonusCounterFrame>(3);
         for (int i = 0; i < LAST_FRAME_INDEX+1; i++) {
             gameFrames.add(new GameFrame(i));
             scoreTable.add(0);
+            finalScoreTable.add(0);
         }
 
     }
@@ -99,6 +103,23 @@ public class BowlingFrameGame {
             bonusCounterLists.add(spearBonusCounter);
         }
 
+        updateFinalScoreTable();
+
+    }
+
+    private void updateFinalScoreTable() {
+
+        for (int i=0; i<=currentFrameId; i++) {
+            //System.out.println(scoreTable.toString());
+            //System.out.println(i + " " + currentFrameId);
+            if (i == 0){
+                finalScoreTable.set(0, scoreTable.get(0));
+            } else {
+                int temp = scoreTable.get(i-1);
+                finalScoreTable.set(i,temp+scoreTable.get(i));
+            }
+
+        }
     }
 
     private void clearBonusCounterList() {
