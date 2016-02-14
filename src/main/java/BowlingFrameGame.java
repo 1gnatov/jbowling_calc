@@ -41,7 +41,6 @@ public class BowlingFrameGame {
     public void rollIt(int roll) {
 
         if (currentFrameId == LAST_FRAME_INDEX) {
-            //System.out.println(currentFrameId +" " + LAST_FRAME_INDEX);
             rollLastFrame(roll);
         } else {
 
@@ -66,21 +65,12 @@ public class BowlingFrameGame {
             for (BonusCounterFrame bf: bonusCounterLists) {
                 temp = scoreTable.get(bf.id);
                 scoreTable.set(bf.id, temp+roll);
-//                for (int ind=bf.id; ind<=currentFrameId; ind++) {
-//                    temp = scoreTable.get(ind);
-//                    scoreTable.set(ind, temp + roll);
-//                }
                 bf.counter--;
             }
             clearBonusCounterList();
 
         }
-//        if (currentFrameId > 0 && scoreTable.get(currentFrameId) == 0) {
-//            temp = scoreTable.get(currentFrameId-1);
-//            temp += scoreTable.get(currentFrameId);
-//        } else {
         temp = scoreTable.get(currentFrameId);
-//        }
 
         scoreTable.set(currentFrameId, temp+roll);
 
@@ -101,8 +91,6 @@ public class BowlingFrameGame {
     private void updateFinalScoreTable() {
 
         for (int i=0; i<=currentFrameId; i++) {
-            //System.out.println(scoreTable.toString());
-            //System.out.println(i + " " + currentFrameId);
             if (i == 0){
                 finalScoreTable.set(0, scoreTable.get(0));
             } else {
@@ -126,7 +114,6 @@ public class BowlingFrameGame {
     }
 
     private void rollLastFrame(int roll) {
-        //System.out.println("LAST FRAME");
         if (haveRollsInLastFrame > 0) {
             if (correctRoll(roll)) {
                 this.gameFrames.get(LAST_FRAME_INDEX).addRoll(roll);
@@ -223,10 +210,6 @@ class GameFrame {
 
         return ("id:" + id + ", Rolls: " + strRolls);
     }
-
-//    public void setRoll(int id, int roll) {
-//        rolls.set(id, roll);
-//    }
 
     public ArrayList<Integer> getRolls() {
         return rolls;

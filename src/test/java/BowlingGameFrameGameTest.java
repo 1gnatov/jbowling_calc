@@ -191,9 +191,7 @@ public class BowlingGameFrameGameTest {
     @Test
     public void check3StrikesInRow() {
         bfg.rollIt(10);
-        //System.out.println(bfg.scoreTable.toString());
         bfg.rollIt(10);
-        //System.out.println(bfg.scoreTable.toString());
         bfg.rollIt(10);
 
         //System.out.println(bfg.scoreTable.toString()); // [30, 50, 60]
@@ -205,10 +203,7 @@ public class BowlingGameFrameGameTest {
     public void testAllStrikes() {
         for (int i=0; i<12; i++) {
             bfg.rollIt(10);
-//            System.out.println(bfg.gameFrames.toString());
-//            System.out.println(bfg.scoreTable.toString());
         }
-        //System.out.println(bfg.finalScoreTable.toString());
         assertEquals(bfg.finalScoreTable.toString(), "[30, 60, 90, 120, 150, 180, 210, 240, 270, 300]");
     }
 
@@ -217,9 +212,7 @@ public class BowlingGameFrameGameTest {
         for (int i=0; i<23; i++) {
             bfg.rollIt(5);
         }
-//        System.out.println(bfg.scoreTable.toString());
-//        System.out.println(bfg.finalScoreTable.toString());
-//        System.out.println(bfg.gameFrames.toString());
+
         assertEquals(bfg.finalScoreTable.toString(), "[15, 30, 45, 60, 75, 90, 105, 120, 135, 150]");
     }
 
@@ -238,7 +231,6 @@ public class BowlingGameFrameGameTest {
         for (int i: array) {
             bfg.rollIt(i);
         }
-        //System.out.println(bfg.finalScoreTable.toString());
         assertEquals(bfg.finalScoreTable.toString(), "[20, 40, 60, 80, 100, 119, 128, 147, 162, 170]");
     }
 
@@ -248,19 +240,10 @@ public class BowlingGameFrameGameTest {
         for (int i: array) {
             bfg.rollIt(i);
         }
-        //System.out.println(bfg.finalScoreTable.toString());
+
         assertEquals(bfg.finalScoreTable.toString(), "[20, 40, 69, 89, 108, 125, 134, 153, 173, 200]");
     }
 
-    @Test
-    public void realGameChampTest4() {
-        int[] array = new int[]{9, 0, 8, 2, 10, 9, 1, 8, 2, 9, 1, 9, 0, 9, 1, 9, 1, 10, 10, 10};
-        for (int i: array) {
-            bfg.rollIt(i);
-        }
-        //System.out.println(bfg.finalScoreTable.toString());
-        //assertEquals(bfg.finalScoreTable.toString(), "[20, 40, 69, 89, 108, 125, 134, 153, 173, 200]");
-    }
 
     @Test
     public void testUnusedMethods() {

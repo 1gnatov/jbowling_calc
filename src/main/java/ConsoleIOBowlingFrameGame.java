@@ -2,7 +2,6 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.InterruptedIOException;
 import java.util.ArrayList;
 
 public class ConsoleIOBowlingFrameGame {
@@ -31,7 +30,6 @@ public class ConsoleIOBowlingFrameGame {
 
         }
     }
-
 
     public static void frameByFrame() throws IOException {
         System.out.println("You choose 1!");
@@ -75,7 +73,6 @@ public class ConsoleIOBowlingFrameGame {
                     }
                     System.out.println(game.getPlayerName() + " " + game.finalScoreTable.toString());
 
-                    //System.out.println(game.haveRollsInLastFrame + " " + game.getPlayerName());
                     if (game.haveRollsInLastFrame == 0) {
                         break;
                     }

@@ -17,7 +17,7 @@ public class GameFrameTest {
         bfg.gameFrames.get(0).addRoll(4);
         currentGameFrame = bfg.gameFrames.get(0);
         assertEquals(currentGameFrame.toString(), "id:0, Rolls: 5 4 ");
-        //assertEquals(currentGameFrame.getScore(), 9);
+
 
 
         bfg.gameFrames.get(1).addRoll(3);
