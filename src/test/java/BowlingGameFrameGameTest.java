@@ -52,7 +52,6 @@ public class BowlingGameFrameGameTest {
         for (int i=0; i < 5; i++) {
             bfg.rollIt(i);
         }
-        //printFrames(bfg);
         assertEquals(bfg.getFrame(2).getRolls().toString(), "[4]");
     }
 
@@ -60,7 +59,6 @@ public class BowlingGameFrameGameTest {
     public void roll11InOneFrame() throws Exception {
         bfg.rollIt(4);
         bfg.rollIt(10); // do not register
-        //printFrames(bfg);
         assertEquals(bfg.getFrame(0).getRolls().toString(), "[4]");
     }
 
@@ -87,7 +85,6 @@ public class BowlingGameFrameGameTest {
         bfg.rollIt(5);
         bfg.rollIt(5);
         bfg.rollIt(4);
-        //printFrames(bfg);
         assertEquals(bfg.getTotalScore(), 18);
     }
 
@@ -117,7 +114,6 @@ public class BowlingGameFrameGameTest {
         bfg.rollIt(5);
         bfg.rollIt(5);
         assertEquals(bfg.getFrame(9).getRolls().toString(), "[2, 2]");
-        //printFrames(bfg);
     }
 
 
@@ -131,7 +127,6 @@ public class BowlingGameFrameGameTest {
         bfg.rollIt(5);
         bfg.rollIt(5);
         assertEquals(bfg.getFrame(9).getRolls().toString(), "[5, 5, 5]");
-        //printFrames(bfg);
     }
 
     @Test
@@ -161,8 +156,6 @@ public class BowlingGameFrameGameTest {
         bfg.rollIt(6);
         bfg.rollIt(4);
         bfg.rollIt(8);
-        //printFrames(bfg);
-        //System.out.println(bfg.scoreTable.get(9).toString());
         assertEquals(bfg.scoreTable.get(9).toString(), "18");
     }
 
@@ -177,11 +170,8 @@ public class BowlingGameFrameGameTest {
     public void checkCalcScoreWithSpare() {
         bfg.rollIt(4);
         bfg.rollIt(6);
-        //System.out.println(bfg.scoreTable.toString());
         bfg.rollIt(3);
-        //System.out.println(bfg.scoreTable.toString());
         bfg.rollIt(4);
-        //System.out.println(bfg.scoreTable.toString());
         assertEquals(bfg.finalScoreTable.get(0).toString(), "13");
         assertEquals(bfg.finalScoreTable.get(1).toString(), "20");
 
@@ -194,8 +184,6 @@ public class BowlingGameFrameGameTest {
         bfg.rollIt(10);
         bfg.rollIt(10);
 
-        //System.out.println(bfg.scoreTable.toString()); // [30, 50, 60]
-       // System.out.println(bfg.finalScoreTable.toString());
         assertEquals(bfg.finalScoreTable.toString(), "[30, 50, 60, 0, 0, 0, 0, 0, 0, 0]");
     }
 
