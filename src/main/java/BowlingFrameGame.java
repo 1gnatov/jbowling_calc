@@ -7,7 +7,6 @@ public class BowlingFrameGame {
     
     private final String playerName;
     public int currentFrameId = 0;
-    private int numberOfRolls = 0;
     private int pinLeft = 10;
     public int haveRollsInLastFrame = 2;
     private boolean freeRollLastFrame = false;
@@ -22,13 +21,6 @@ public class BowlingFrameGame {
     }
     public GameFrame getFrame(int i) {
         return gameFrames.get(i);
-    }
-    public String getFrameToStrings() {
-        String result = "";
-        for (GameFrame f: gameFrames) {
-            result += f.toString();
-        }
-        return result;
     }
 
     public BowlingFrameGame(String playerName) {
@@ -64,13 +56,11 @@ public class BowlingFrameGame {
                     pinLeft = 10;
                 }
 
-            } else {
-                System.out.println("Give right number of pins.");
-            }
+            } else System.out.println("Give right number of pins.");
         }
     }
 
-    public void calcScore(int currentFrameId, int roll) {
+    private void calcScore(int currentFrameId, int roll) {
         int temp;
         if (bonusCounterLists.size() > 0) {
             for (BonusCounterFrame bf: bonusCounterLists) {

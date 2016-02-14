@@ -56,7 +56,7 @@ public class BowlingGameFrameGameTest {
         assertEquals(bfg.getFrame(2).getRolls().toString(), "[4]");
     }
 
-    @Test @Ignore
+    @Test
     public void roll11InOneFrame() throws Exception {
         bfg.rollIt(4);
         bfg.rollIt(10); // do not register
