@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 
-
 public class BowlingFrameGame {
     
     private final String playerName;
