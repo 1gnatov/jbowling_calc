@@ -21,8 +21,6 @@ public class GameFrameTest {
         bfg.gameFrames.get(1).addRoll(3);
         bfg.gameFrames.get(1).addRoll(7);
 
-        printFrames(bfg);
-
     }
 
     public void printFrames(BowlingFrameGame g) {
@@ -31,13 +29,4 @@ public class GameFrameTest {
         }
     }
 
-    @Test
-    public void testGetRolls() throws Exception {
-
-    }
-
-    @Test
-    public void testSetRoll() throws Exception {
-
-    }
 }
